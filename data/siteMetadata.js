@@ -1,8 +1,7 @@
 const siteMetadata = {
-  title: 'mfshi03 archive',
   author: 'Michael Shi',
   headerTitle: '',
-  description: 'a burning curiosity',
+  description: 'when I have free time :(',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://www.mfshi03.com',

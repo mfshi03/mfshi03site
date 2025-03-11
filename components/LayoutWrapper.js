@@ -1,19 +1,24 @@
 import { useRouter } from 'next/router'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
-import LogoBlack from '@/data/resized_black_piece.svg'
-import LogoWhite from '@/data/resized_white_piece.svg'
 import Link from './Link'
+import Frames from '@/data/frames.json'
 import SectionContainer from './SectionContainer'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
 
 const LayoutWrapper = ({ children }) => {
   const { theme, resolvedTheme } = useTheme()
+  const [index, setIndex] = useState(0)
   const currentTheme = theme || resolvedTheme
   const router = useRouter()
+
+  useEffect(() => {
+    const timer = setInterval(() => setIndex((i) => (i + 1) % Frames.length), 50)
+  }, [])
 
   return (
     <SectionContainer>
@@ -22,8 +27,19 @@ const LayoutWrapper = ({ children }) => {
           <div>
             <Link href="/" aria-label={siteMetadata.headerTitle}>
               <div className="flex items-center justify-between">
-                <div className="mr-3">
-                  {currentTheme === 'dark' ? <LogoWhite /> : <LogoBlack />}
+                <div
+                  className="mr-3"
+                  style={{
+                    color: 'white',
+                    textAlign: 'center',
+                    fontSize: 5,
+                    fontFamily: 'monospace',
+                  }}
+                >
+                  <div
+                    dangerouslySetInnerHTML={{ __html: Frames[index] }}
+                    style={{ color: 'orange' }}
+                  />
                 </div>
                 {typeof siteMetadata.title === 'string' ? (
                   <div className="hidden h-6 text-lg font-semibold sm:block">
