@@ -1,4 +1,5 @@
 const siteMetadata = {
+  title: '',
   author: 'Michael Shi',
   headerTitle: '',
   description: 'when I have free time :(',
